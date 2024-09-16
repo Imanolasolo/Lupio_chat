@@ -1,0 +1,5 @@
+[theme]
+primaryColor="#000000" # Color de texto en negro
+backgroundColor="#87CEEB" # Color de fondo en azul celeste
+secondaryBackgroundColor="#ffffff" # Fondo secundario (por ejemplo, el de los contenedores) en blanco
+textColor="#000000" # Color del texto en negro
