@@ -66,23 +66,30 @@ def handle_user_input(user_question):
 def main():
     st.set_page_config(page_title=name, page_icon=":computer:", layout="centered")
 
-    # Define CSS for the custom container
+    # Define CSS for the custom container and input box
     st.markdown("""
         <style>
         .custom-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #ffffff; /* White background for the container */
-            border-radius: 10px; /* Optional: rounded corners */
-            padding: 20px; /* Optional: padding inside the container */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: shadow for a 3D effect */
-            max-width: 600px; /* Optional: max width for the container */
-            margin: 20px auto; /* Center the container horizontally */
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 20px auto;
         }
         .custom-container img {
-            max-width: 100%; /* Make sure image fits inside the container */
+            max-width: 100%;
             height: auto;
+        }
+        .custom-text-input {
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
         }
         </style>
     """, unsafe_allow_html=True)
@@ -123,8 +130,25 @@ def main():
     st.session_state.conversation = conversation_chain
     st.session_state.chat_history = []
 
-    # Input box for user questions
-    user_question = st.text_input("Hola, soy Lupio IA, ¿en qué te puedo ayudar?")
+    # Input box for user questions with custom styling
+    user_question = st.text_input(
+        "Hola, soy Lupio IA, ¿en qué te puedo ayudar?",
+        key="user_input",
+        placeholder="Escribe tu mensaje aquí..."
+    )
+
+    # Add styling to the input box (shadow and border)
+    st.markdown("""
+        <style>
+        div[role="textbox"] > input {
+            border: 2px solid #ddd !important;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        </style>
+    """, unsafe_allow_html=True)
+
+    # Handle user input
     if user_question:
         handle_user_input(user_question)
 
